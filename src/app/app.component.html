@@ -1,0 +1,59 @@
+<!--<div class="example-container">-->
+<!--  <form [formGroup]="myForm">-->
+<!--  <mat-form-field>-->
+<!--    <input matInput placeholder="Input">-->
+<!--  </mat-form-field>-->
+<!--  <mat-form-field>-->
+<!--    <mat-select placeholder="Select">-->
+<!--      <mat-option value="option">Option</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--  </form>-->
+<!--</div>-->
+
+<form [formGroup]="myForm">
+
+    name: <input type="text" formControlName="name">
+  <br>
+  id: <input type="text" formControlName="id">
+  <br>
+  description: <input type="text" formControlName="description">
+  <br>
+
+  <div formGroupName="address">
+    city : <input type="text" formControlName="city">
+    <br>
+
+    state : <input type="text" formControlName="state">
+    <br>
+    street : <input type="text" formControlName="street">
+    <br>
+
+    zip: <input type="text" formControlName="zip_code">
+    <br>
+
+  </div>
+  <button type="button" (click)="addFood()">Add Food</button>
+    <div formArrayName="foods" *ngFor="let arr_1 of arrayFood.controls; let i = index" >
+      <div [formGroupName]="i">
+        {{arr_1.foodName}}
+        Foods:
+        <input type="text" formControlName="foodName">
+        <br>
+        <button type="button" (click)="removeFood(i)">Remove Food</button>
+      </div>
+    </div>
+
+
+
+  <tr formArrayName="games" *ngFor="let product of myForm.controls.games.controls; let i = index" [formGroupName]="i">
+      Number:
+      <input type="text" formControlName="number">
+      <br>
+    Name:
+    <input type="text" formControlName="name">
+  </tr>
+
+  <br>
+  <button type="button" (click)="showData()">Sumbit</button>
+</form>
